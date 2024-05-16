@@ -27,7 +27,7 @@ public class FemmeServiceImpl implements FemmeService{
        if (optionalMari.isPresent()){
            femme.setMari(optionalMari.get());
            Femme femmeSave = femmeRepository.save(femme);
-           return ResponseEntity.ok(femmeSave);
+           return ResponseEntity.status(HttpStatus.CREATED).body(femmeSave);
        }  else {
            throw new NotFoundException("Le mari Id n'existe pas");
        }
