@@ -54,18 +54,7 @@ public class FemmeServiceImpl implements FemmeService{
         return optionalMari;
     }
 
-  @Override
-    public ResponseEntity<String> deleteFemme(int femmeId) {
-       Optional<Femme> optionalFemme = getFemmeId(femmeId);
-        if(optionalFemme.isPresent()) {
-            femmeRepository.deleteById(femmeId);
-           return ResponseEntity.ok("femme supprimée avec succès");
-        }else {
-                throw new NotFoundException("La femme Id n'existe pas");
-            }
 
-
-    }
     private Optional<Femme> getFemmeId(int femmeId){
         Optional<Femme> optionalFemme = femmeRepository.findById(femmeId);
         return optionalFemme;
@@ -89,6 +78,20 @@ public class FemmeServiceImpl implements FemmeService{
         else {
             throw new NotFoundException("La femme Id n'existe pas");
         }
+    }
+
+
+    @Override
+    public ResponseEntity<String> deleteFemme(int femmeId) {
+        Optional<Femme> optionalFemme = getFemmeId(femmeId);
+        if(optionalFemme.isPresent()) {
+            femmeRepository.deleteById(femmeId);
+            return ResponseEntity.ok("femme supprimée avec succès");
+        }else {
+            throw new NotFoundException("La femme Id n'existe pas");
+        }
+
+
     }
 
 }

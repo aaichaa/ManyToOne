@@ -48,6 +48,8 @@ public class FemmeServiceImplTest {
     private Mari mari;
     private Femme femme;
     private Femme femme1;
+
+    private Femme updateFemme;
     private List<Femme> femmeListe;
 
     @BeforeEach
@@ -66,6 +68,12 @@ public class FemmeServiceImplTest {
         femme.setPrenom("Aissatou");
         femme.setAge(20);
         femme.setMari(mari);
+
+        updateFemme = new Femme();
+        updateFemme.setNom("updateName");
+        updateFemme.setPrenom("updatePrenom");
+        updateFemme.setAge(550);
+        updateFemme.setMari(mari);
 
         femme1 = new Femme();
         femme1.setId(10);
@@ -137,10 +145,40 @@ public class FemmeServiceImplTest {
         assertThat(getAllFemmeByIdMariId).isNotNull();
         assertThat(getAllFemmeByIdMariId.getStatusCode()).isEqualTo(HttpStatus.OK);
 
+    }
 
+    @DisplayName("Junit test for update Femme")
+    @Test
+    public void testUpdateFemme_Success() {
+        when(femmeRepository.findById(femme.getId())).thenReturn(Optional.of(femme));
 
+        when(femmeRepository.save(femme)).thenReturn(femme);
+
+        ResponseEntity<Femme> putFemme = femmeServiceImplementation.putFemme(updateFemme,femme.getId());
+
+        log.info(putFemme.getBody());
+
+        assertThat(putFemme).isNotNull();
+        assertThat(putFemme).isNotNull();
+        assertThat(putFemme.getStatusCode()).isEqualTo(HttpStatus.OK);
 
     }
+
+    @DisplayName("Junit test for delete Femme")
+    @Test
+    public void testDeleteFemme_Success() {
+        when(femmeRepository.findById(femme.getId())).thenReturn(Optional.of(femme));
+        ResponseEntity<String> deleteFemme = femmeServiceImplementation.deleteFemme(femme.getId());
+
+        log.info(deleteFemme.getBody());
+        assertThat(deleteFemme).isNotNull();
+        assertThat(deleteFemme.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertEquals("femme supprimée avec succès", deleteFemme.getBody());
+
+        verify(femmeRepository, times(1)).deleteById(femme.getId());
+    }
+
+
 
 
 
