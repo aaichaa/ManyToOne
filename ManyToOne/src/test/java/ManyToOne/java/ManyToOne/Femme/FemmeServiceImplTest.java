@@ -1,4 +1,4 @@
-package ManyToOne.java.ManyToOne;
+package ManyToOne.java.ManyToOne.Femme;
 
 import ManyToOne.java.ManyToOne.model.Femme;
 import ManyToOne.java.ManyToOne.model.Mari;

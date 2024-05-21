@@ -33,6 +33,11 @@ public class FemmeServiceImpl implements FemmeService{
        }
 
     }
+
+    private Optional<Mari> getId(int mariId){
+        Optional<Mari> optionalMari = mariRepository.findById(mariId);
+        return optionalMari;
+    }
   @Override
     public ResponseEntity<List<Femme>> getAllFemme() {
       List<Femme> listFemme = femmeRepository.findAll();
@@ -49,10 +54,7 @@ public class FemmeServiceImpl implements FemmeService{
             throw new NotFoundException("Le mari Id n'existe pas");
         }
     }
-    private Optional<Mari> getId(int mariId){
-        Optional<Mari> optionalMari = mariRepository.findById(mariId);
-        return optionalMari;
-    }
+
 
 
     private Optional<Femme> getFemmeId(int femmeId){
@@ -73,7 +75,6 @@ public class FemmeServiceImpl implements FemmeService{
             femme.setAge(newfemme.getAge());
             Femme femmePut = femmeRepository.save(femme);
             return ResponseEntity.ok(femmePut);
-
         }
         else {
             throw new NotFoundException("La femme Id n'existe pas");

@@ -1,4 +1,4 @@
-package ManyToOne.java.ManyToOne;
+package ManyToOne.java.ManyToOne.Mari;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
