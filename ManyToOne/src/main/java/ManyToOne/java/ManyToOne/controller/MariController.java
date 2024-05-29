@@ -53,6 +53,8 @@ public class MariController {
     public ResponseEntity<List<Mari>>  getAllMari(){
         return mariService.getAllMari();
     }
+
+
      /* @GetMapping("/{id}")
     public ResponseEntity getMari(@PathVariable int id){
         try{

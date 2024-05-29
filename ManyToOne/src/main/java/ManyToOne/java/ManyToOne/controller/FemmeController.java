@@ -64,20 +64,7 @@ public class FemmeController {
         return femmeService.getAllFemmeByIdMariId(mariId);
     }
 
-    @Operation(summary = "Delete femme by id", responses = {
-            @ApiResponse(responseCode = "200", description = "SortSerie is Updated successfully.", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = Femme.class)) }),
-            @ApiResponse(responseCode = "400", description = "Missing Request Header", content = @Content),
-            @ApiResponse(responseCode = "401", description = "You don't have the authorization to access this resource", content = @Content),
-            @ApiResponse(responseCode = "403", description = "You don't have accreditation to access this resource", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Femme not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
-    })
-    @DeleteMapping("/{femmeId}")
-    public ResponseEntity<String> deleteFemme(@PathVariable int femmeId){
-        return femmeService.deleteFemme(femmeId);
 
-    }
 
     @Operation(summary = "Put femme by id", responses = {
             @ApiResponse(responseCode = "200", description = "Femme is Updated successfully.", content = {
@@ -91,6 +78,21 @@ public class FemmeController {
     @PutMapping("/{femmeId}")
     public ResponseEntity<Femme> putFemme( @RequestBody Femme newfemme, @PathVariable int femmeId){
         return femmeService.putFemme( newfemme, femmeId);
+    }
+
+    @Operation(summary = "Delete femme by id", responses = {
+            @ApiResponse(responseCode = "200", description = "SortSerie is Updated successfully.", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Femme.class)) }),
+            @ApiResponse(responseCode = "400", description = "Missing Request Header", content = @Content),
+            @ApiResponse(responseCode = "401", description = "You don't have the authorization to access this resource", content = @Content),
+            @ApiResponse(responseCode = "403", description = "You don't have accreditation to access this resource", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Femme not found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+    })
+    @DeleteMapping("/{femmeId}")
+    public ResponseEntity<String> deleteFemme(@PathVariable int femmeId){
+        return femmeService.deleteFemme(femmeId);
+
     }
 
 
